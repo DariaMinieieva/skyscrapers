@@ -1,6 +1,8 @@
 '''
 Module for checking a board for
 skyscrapers game
+
+Link to GitHub: https://github.com/DariaMinieieva/skyscrapers
 '''
 
 
