@@ -12,7 +12,7 @@ def read_input(path: str):
     Return list of str.
 
     >>> read_input("check.txt")
-    ['***21**', '412453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']
+    ['***21**', '452453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']
     """
     result = []
 
@@ -212,5 +212,5 @@ def check_skyscrapers(input_path: str):
     return columns and h_visibility and not_finished and uniqueness
 
 
-if __name__ == "__main__":
-    print(check_skyscrapers("check.txt"))
+# if __name__ == "__main__":
+#     print(check_skyscrapers("check.txt"))
