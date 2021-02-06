@@ -10,9 +10,6 @@ def read_input(path: str):
     """
     Read game board file from path.
     Return list of str.
-
-    >>> read_input("check.txt")
-    ['***21**', '452453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']
     """
     result = []
 
@@ -198,9 +195,6 @@ def check_skyscrapers(input_path: str):
     Main function to check the status of skyscraper game board.
     Return True if the board status is compliant with the rules,
     False otherwise.
-
-    >>> check_skyscrapers("check.txt")
-    True
     """
     board = read_input(input_path)
 
