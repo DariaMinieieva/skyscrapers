@@ -34,12 +34,19 @@ def left_to_right_check(input_line: str, pivot: int):
     >>> left_to_right_check("452453*", 5)
     False
     """
-    num = list(map(int, list(input_line.strip("*"))))
-    num.pop(0)
+    row_1 = input_line[1:-1]
+    row_1 = list(filter(lambda x: x != "*", list(row_1)))
+    row_1 = list(map(int, row_1))
 
-    num = num[:pivot]
+    first_num = row_1[0]
+    temp = [first_num]
 
-    if num[-1] == max(num):
+    for i in range(1, len(row_1)):
+        if row_1[i] > first_num:
+            temp.append(row_1[i])
+        first_num = max(row_1[i], first_num)
+
+    if len(temp) >= pivot:
         return True
 
     return False
@@ -121,39 +128,19 @@ def check_horizontal_visibility(board: list):
     results = []
 
     for row in board:
-        row_1 = row[1:-1]
-        row_1 = list(filter(lambda x: x != "*", list(row_1)))
-        row_1 = list(map(int, row_1))
-
         if row[0] != "*":
-            results.append(check_rows(row_1, int(row[0])))
+            results.append(left_to_right_check(row, int(row[0])))
 
         if row[-1] != "*":
-            row_1.reverse()
-            results.append(check_rows(row_1, int(row[-1])))
+            row = list(row)
+            row.reverse()
+            row = "".join(row)
+            results.append(left_to_right_check(row, int(row[0])))
 
     if False in results:
         return False
 
     return True
-
-
-def check_rows(row_1: list, num: int) -> bool:
-    '''
-    Check rows visibility
-    '''
-    first_num = row_1[0]
-    temp = [first_num]
-
-    for i in range(1, len(row_1)):
-        if row_1[i] > first_num:
-            temp.append(row_1[i])
-        first_num = max(row_1[i], first_num)
-
-    if len(temp) >= num:
-        return True
-
-    return False
 
 
 def check_columns(board: list):
@@ -206,5 +193,6 @@ def check_skyscrapers(input_path: str):
     return columns and h_visibility and not_finished and uniqueness
 
 
-# if __name__ == "__main__":
-#     print(check_skyscrapers("check.txt"))
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
